@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('siswa_id');
             $table->string('tes_id');
             $table->string('soal_id');
-            $table->string('jawaban');  
+            $table->string('jawaban');
+            $table->text('jawaban_essay');
             $table->timestamps();
 
             //FK

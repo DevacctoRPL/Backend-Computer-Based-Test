@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\Guru\TesController;
 use App\Http\Controllers\API\Auth\AuthController;
 use App\Http\Controllers\API\Guru\SoalController;
+use App\Http\Controllers\API\Guru\PenilaianEssayController;
 
 
 Route::get('/user', function (Request $request) {
@@ -38,5 +39,12 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::delete('/deleteall/{tes_id}', [SoalController::class, 'deleteAllSoal']);
         });
 
+        // Essay assessment routes
+        Route::prefix('/penilaian')->group(function() {
+            Route::get('/tests', [PenilaianEssayController::class, 'getTests']);
+            Route::get('/test/{tes_id}/essays', [PenilaianEssayController::class, 'getEssayAnswers']);
+            Route::post('/essay/{jawaban_id}', [PenilaianEssayController::class, 'gradeEssay']);
+            Route::post('/essays/batch', [PenilaianEssayController::class, 'batchGradeEssays']);
+        });
     });
 });
