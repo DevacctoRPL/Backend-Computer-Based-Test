@@ -58,21 +58,22 @@ Route::middleware('auth:sanctum')->group(function () {
 
 });
 Route::prefix('/monitoring-aktivitas')->group(function() {
-    Route::get('/show', [MonitoringAktivitasController::class, 'index']);
-    Route::get('/{id}', [MonitoringAktivitasController::class, 'show']);
-    Route::post('/insert', [MonitoringAktivitasController::class, 'store']);
+    Route::get('/show', [MonitoringAktivitasController::class, 'showAllMonitoringAktivitas']);
+    Route::get('/show/{id}', [MonitoringAktivitasController::class, 'showMonitoringAktivitasbyId']);
+    Route::post('/create', [MonitoringAktivitasController::class, 'createMonitoringAktivitas']);
     Route::put('/{id}', [MonitoringAktivitasController::class, 'update']);
     Route::delete('/{id}', [MonitoringAktivitasController::class, 'destroy']);
-    Route::get('/sesi/{sesi_id}', [MonitoringAktivitasController::class, 'showBySesiId']);
     Route::get('/siswa/{siswa_id}', [MonitoringAktivitasController::class, 'logAktivitasSiswa']);
 });
-
+/*
 Route::prefix('/sesi-tes')->group(function() {
-    Route::get('/', [SesiTesController::class, 'index']);
-    Route::get('/{id}', [SesiTesController::class, 'show']);
-    Route::post('/insert', [SesiTesController::class, 'store']);
-    Route::put('/{id}', [SesiTesController::class, 'update']);
-    Route::delete('/{id}', [SesiTesController::class, 'destroy']);
+    Route::get('/', [SesiTesController::class, 'showAll']);
+    Route::get('/{id}', [SesiTesController::class, 'showbyId']);
+    Route::post('/insert', [SesiTesController::class, 'createSesiTes']);
+    Route::put('/{id}', [SesiTesController::class, 'updateSesiTes']);
+    Route::delete('/{id}', [SesiTesController::class, 'destroySesiTes']);
     Route::get('/siswa/{siswa_id}', [SesiTesController::class, 'showBySiswaId']);
     Route::get('/tes/{tes_id}', [SesiTesController::class, 'showByTesId']);
 });
+
+*/
