@@ -103,6 +103,7 @@ class SiswaController extends Controller
             $kelas = json_decode($t->kelas);
             $data[] = [
                 "id" => $t->id,
+                "tes_id" => $t->tes_id,
                 "kode_tes" => $t->kode_tes,
                 "judul" => $t->judul,
                 "deskripsi" => $t->deskripsi,
@@ -121,6 +122,30 @@ class SiswaController extends Controller
         return response()->json([
             'success' => true,
             'data' => $data
+        ], 200);
+    }
+
+    public function seeTesById($tes_id) {
+        $tes = DB::table('tes')->where('tes_id', '=', $tes_id)->first();
+        $kelas = json_decode($tes->kelas);
+        return response()->json([
+            'success' => true,
+            'data' => [
+                "id" => $tes->id,
+                "kode_tes" => $tes->kode_tes,
+                "judul" => $tes->judul,
+                "deskripsi" => $tes->deskripsi,
+                "jam_mulai" => $tes->jam_mulai,
+                "durasi_menit" => $tes->durasi_menit,
+                "tanggal_mulai" => $tes->tanggal_mulai,
+                "tanggal_selesai" => $tes->tanggal_selesai,
+                "batas_percobaan" => $tes->batas_percobaan,
+                "password_tes" => $tes->password_tes,
+                "semester" => $tes->semester,
+                "jenis_ujian" => $tes->jenis_ujian,
+                "mapel" => $tes->mapel,
+                "kelas" => $kelas
+            ]
         ], 200);
     }
 }
